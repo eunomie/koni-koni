@@ -1,10 +1,27 @@
 !!!
-%html
+%html{ lang: 'en' }
   %head
+    %title Koni Koni
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title KoniKoni
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
-    = csrf_meta_tags
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tag
   %body
-    = yield
+    .container-fluid.main
+      %nav.navbar.navbar-light.bg-faded.navbar-fixed-top
+        = link_to 'Koni', root_path, class: 'navbar-brand'
+        %ul.nav.navbar-nav.pull-xs-right
+          - if signed_in?
+            %li.nav-item
+              %span= current_user.email
+            %li.nav-item
+              = link_to t('.sign_out'), sign_out_path, method: :delete
+          - else
+            %li.nav-item
+              = link_to t('.sign_in'), sign_in_path
+      .container#flash
+        - flash.each do |key, value|
+          %div{:class => "alert alert-#{key}"}
+            = value
+      = yield

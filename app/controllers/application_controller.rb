@@ -1,3 +1,4 @@
+# Application controller
 class ApplicationController < ActionController::Base
   include Clearance::Controller
   # Prevent CSRF attacks by raising an exception.
