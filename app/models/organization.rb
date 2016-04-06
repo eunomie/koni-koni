@@ -1,3 +1,4 @@
+# Organization is a set of teams of people
 class Organization < ActiveRecord::Base
   validates :name, presence: true
   has_many :teams

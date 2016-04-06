@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :mood do
-    felt_on Date.today
+    felt_on Time.zone.today
     organization nil
   end
 end
