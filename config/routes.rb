@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :moods
+resources :notes
+resources :organizations
+resources :teams
+resources :users
+
+    root to: "moods#index"
+  end
+
   root to: 'welcome#index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
