@@ -1,0 +1,12 @@
+= simple_form_for mood do |f|
+  - if mood.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
+      %ul
+        - mood.errors.full_messages.each do |message|
+          %li= message
+  %fieldset.form-group
+    %label
+      How was your day?
+    = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }
+  = f.submit 'Save', class: 'btn btn-primary'

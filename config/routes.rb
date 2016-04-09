@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :moods
-resources :notes
-resources :organizations
-resources :teams
-resources :users
+    resources :notes
+    resources :organizations
+    resources :teams
+    resources :users
 
     root to: "moods#index"
   end
@@ -25,6 +25,7 @@ resources :users
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   resources :organizations
+  resources :moods, only: [:create, :new]
 
   get 'welcome/index'
 
