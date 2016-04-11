@@ -1,3 +1,4 @@
+# Handle mood creation
 class MoodsController < ApplicationController
   # GET /moods/new
   def new
@@ -6,8 +7,9 @@ class MoodsController < ApplicationController
 
   # POST /moods
   # POST /moods.json
+  # rubocop:disable Metrics/AbcSize
   def create
-    @mood = Mood.new(mood_params.merge felt_on: Date.today)
+    @mood = Mood.new(mood_params.merge(felt_on: Time.zone.today))
 
     respond_to do |format|
       if @mood.save
@@ -19,10 +21,12 @@ class MoodsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def mood_params
-      params.require(:mood).permit(:feeling)
-    end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def mood_params
+    params.require(:mood).permit(:feeling)
+  end
 end
