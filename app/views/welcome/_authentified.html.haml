@@ -1,0 +1,19 @@
+%h1
+  Hello
+  = current_user.name
+  !
+
+%dl
+  %dt
+    Organization:
+  %dd
+    = current_user.organization
+  %dt
+    Team:
+  %dd
+    - if !current_user.team.nil?
+      = current_user.team
+    - else
+      no team
+
+= render 'moods/form', mood: @mood

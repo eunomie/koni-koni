@@ -9,7 +9,7 @@ class MoodsController < ApplicationController
   # POST /moods.json
   # rubocop:disable Metrics/AbcSize
   def create
-    @mood = Mood.new(mood_params.merge(felt_on: Time.zone.today))
+    @mood = Mood.new(mood_params.merge(felt_on: Time.zone.today, organization: current_user.organization))
 
     respond_to do |format|
       if @mood.save

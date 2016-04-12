@@ -7,6 +7,9 @@
           %li= message
   %fieldset.form-group
     %label
-      How was your day?
+      = succeed '?' do
+        How was your day
+        - if current_user.team
+          = " in #{current_user.team} team"
     = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }
   = f.submit 'Save', class: 'btn btn-primary'
