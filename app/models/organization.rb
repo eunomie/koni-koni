@@ -5,4 +5,8 @@ class Organization < ActiveRecord::Base
   has_many :notes
   has_many :users
   has_many :moods
+
+  def to_s
+    name
+  end
 end
