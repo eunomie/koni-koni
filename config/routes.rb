@@ -9,7 +9,13 @@ Rails.application.routes.draw do
     root to: "moods#index"
   end
 
-  root to: 'welcome#index'
+  constraints Clearance::Constraints::SignedIn.new do
+    root to: 'welcome_auth#index', as: :signed_in_root
+  end
+
+  constraints Clearance::Constraints::SignedOut.new do
+    root to: 'welcome#index'
+  end
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -27,6 +33,8 @@ Rails.application.routes.draw do
   resources :moods, only: [:create, :new]
 
   get 'welcome/index'
+  get 'welcome_auth/index'
+  post 'welcome_auth/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
