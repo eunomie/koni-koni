@@ -2,11 +2,15 @@
 module MoodCreation
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def create_mood(success_to:, error_to:)
-    @mood = Mood.new(mood_params.merge(
-                                       felt_on: Time.zone.today,
-                                       organization: current_user.organization
-                                      ))
+    @mood = Mood.new(
+      mood_params.merge(
+        felt_on: Time.zone.today,
+        organization: current_user.organization
+      )
+    )
 
     respond_to do |format|
       if @mood.save
@@ -18,6 +22,8 @@ module MoodCreation
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   private
 

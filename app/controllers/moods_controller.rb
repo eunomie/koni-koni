@@ -9,9 +9,7 @@ class MoodsController < ApplicationController
 
   # POST /moods
   # POST /moods.json
-  # rubocop:disable Metrics/AbcSize
   def create
     create_mood success_to: :back, error_to: :new
   end
-  # rubocop:enable Metrics/AbcSize
 end

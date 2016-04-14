@@ -15,6 +15,7 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'app/controllers/admin/*.rb'
     - 'app/dashboards/*.rb'
+  TargetRubyVersion: 2.2
 
 Metrics/LineLength:
   Max: 110
