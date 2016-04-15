@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   constraints Clearance::Constraints::SignedIn.new do
     root to: 'welcome_auth#index', as: :signed_in_root
+
+    get 'profile/index'
+
+    get 'welcome_auth/index'
+    post 'welcome_auth/create'
+
+    resources :moods, only: [:create, :new]
   end
 
   constraints Clearance::Constraints::SignedOut.new do
@@ -30,11 +37,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
-  resources :moods, only: [:create, :new]
-
   get 'welcome/index'
-  get 'welcome_auth/index'
-  post 'welcome_auth/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-md-6
+      .card
+        .card-block
+          %h4.card-title
+            = current_user.name
+          %h6.card-subtitle.text-muted
+            = current_user.organization.name
+        %img.img-fluid.img-rounded.center-block{ src: 'https://unsplash.it/400/?random', alt: 'Avatar' }
+        .card-block
+          = link_to t('.forgot_password'), new_password_path, class: 'card-link'
+    .col-md-6
