@@ -7,6 +7,6 @@ class WelcomeAuthController < ApplicationController
   end
 
   def create
-    create_mood success_to: :back, error_to: :new
+    create_mood success_to: :back, error_to: :index
   end
 end
