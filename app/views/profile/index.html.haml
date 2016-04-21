@@ -5,9 +5,10 @@
         .card-block
           %h4.card-title
             = current_user.name
-          %h6.card-subtitle.text-muted
-            = current_user.organization.name
-        %img.img-fluid.img-rounded.center-block{ src: 'https://unsplash.it/400/?random', alt: 'Avatar' }
+          - unless current_user.organization.nil?
+            %h6.card-subtitle.text-muted
+              = current_user.organization.name
+        = image_tag current_user.gravatar_url, class: 'img-fuild img-rounded center-block', alt: current_user.name
         .card-block
           = link_to t('.forgot_password'), new_password_path, class: 'card-link'
     .col-md-6

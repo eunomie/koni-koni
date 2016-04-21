@@ -1,15 +1,10 @@
 = simple_form_for mood, url: url do |f|
   - if mood.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
+    #error_explanation.alert.alert-danger
+      %strong= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
       %ul
         - mood.errors.full_messages.each do |message|
           %li= message
   %fieldset.form-group
-    %label
-      = succeed '?' do
-        How was your day
-        - if current_user.team
-          = " in #{current_user.team} team"
-    = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }
+    = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }, label: false
   = f.submit 'Save', class: 'btn btn-primary'

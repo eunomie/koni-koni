@@ -1,21 +1,24 @@
 .container
-  .jumbotron
-    %h1
-      Hello
-      = current_user.name
-      !
-
-    %dl
-      %dt
-        Organization:
-      %dd
-        = current_user.organization
-      %dt
-        Team:
-      %dd
-        - if !current_user.team.nil?
-          = current_user.team
-        - else
-          no team
-
-    = render 'moods/form', mood: @mood, url: welcome_auth_create_path
+  .row
+    .col-md-12
+      .card
+        .card-block
+          .media
+            .media-left
+              = image_tag current_user.gravatar_url, class: 'img-circle'
+            .media-body
+              %h4.media-heading
+                = current_user.name
+              = current_user.organization
+              - if !current_user.team.nil?
+                = "- #{current_user.team}"
+  .row
+    .col-md-12
+      .card
+        .card-block
+          %h4.card-title
+            = succeed '?' do
+              How was your day
+              - if current_user.team
+                = " in #{current_user.team} team"
+          = render 'moods/form', mood: @mood, url: welcome_auth_create_path
