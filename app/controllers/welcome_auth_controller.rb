@@ -4,6 +4,8 @@ class WelcomeAuthController < ApplicationController
 
   def index
     @mood = Mood.new
+
+    @moods = Mood.by_date for_organization: current_user.organization
   end
 
   def create

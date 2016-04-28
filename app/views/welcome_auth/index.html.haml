@@ -22,3 +22,16 @@
               - if current_user.team
                 = " in #{current_user.team} team"
           = render 'moods/form', mood: @mood, url: welcome_auth_create_path
+
+  .row
+    .col-md-12
+      .card
+        .card-block
+          %h4.card-title
+            History
+          %dl
+            - @moods.each do |date, moods|
+              %dd= date.to_s
+              %dt
+                - present(moods, MoodsPresenter) do |m|
+                  = m.compute

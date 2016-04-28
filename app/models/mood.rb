@@ -11,4 +11,8 @@ class Mood < ActiveRecord::Base
     ordinary: 'ordinary',
     bad: 'bad'
   }
+
+  def self.by_date(for_organization:)
+    Mood.where(organization: for_organization).group_by(&:felt_on)
+  end
 end
