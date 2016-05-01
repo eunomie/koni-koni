@@ -75,8 +75,11 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'clearance'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-chartjs'
+  gem 'rails-assets-momentjs'
 end
 gem 'gravtastic'
+gem 'chartkick', :git => 'git://github.com/ankane/chartkick.git', :ref => 'e9deae3'
 
 group :production do
   gem 'rails_12factor'

@@ -5,4 +5,7 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
+//= require momentjs
+//= require chartjs
+//= require chartkick
 //= require_tree .

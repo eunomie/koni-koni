@@ -6,6 +6,7 @@ class WelcomeAuthController < ApplicationController
     @mood = Mood.new
 
     @moods = Mood.by_date for_organization: current_user.organization
+    @moods.update(@moods) { |date, mood| MoodsPresenter.new(mood, view_context).compute }
   end
 
   def create

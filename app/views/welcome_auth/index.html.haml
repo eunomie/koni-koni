@@ -29,9 +29,8 @@
         .card-block
           %h4.card-title
             History
+          = area_chart @moods
           %dl
             - @moods.each do |date, moods|
               %dd= date.to_s
-              %dt
-                - present(moods, MoodsPresenter) do |m|
-                  = m.compute
+              %dt= moods
