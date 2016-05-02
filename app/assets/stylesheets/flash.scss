@@ -1,0 +1,14 @@
+.alert-alert {
+  @extend .alert-warning;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+#flash.container {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    margin-top: 1em;
+}
