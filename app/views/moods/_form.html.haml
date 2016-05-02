@@ -1,9 +1,9 @@
-= simple_form_for mood, url: url do |f|
-  - if mood.errors.any?
+= simple_form_for @mood, remote: true do |f|
+  - if @mood.errors.any?
     #error_explanation.alert.alert-danger
       %strong= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
       %ul
-        - mood.errors.full_messages.each do |message|
+        - @mood.errors.full_messages.each do |message|
           %li= message
   %fieldset.form-group
     = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }, label: false
