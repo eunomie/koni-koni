@@ -6,10 +6,6 @@ class WelcomeAuthController < ApplicationController
     @mood = Mood.new
 
     @moods = Mood.by_date for_organization: current_user.organization
-    @moods.update(@moods) { |date, mood| MoodsPresenter.new(mood, view_context).compute }
-  end
-
-  def create
-    create_mood success_to: :back, error_to: :index
+    @moods.update(@moods) { |_, mood| MoodsPresenter.new(mood, view_context).compute }
   end
 end

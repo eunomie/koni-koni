@@ -5,12 +5,21 @@ module MoodCreation
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
   def create_mood(success_to:, error_to:)
+    if current_user.last_felt_on.try(:today?)
+      respond_to do |format|
+        format.html { render error_to }
+        format.json { render json: @mood.errors, status: :unprocessable_entity }
+      end
+    end
+
     @mood = Mood.new(
       mood_params.merge(
         felt_on: Time.zone.today,
         organization: current_user.organization
       )
     )
+
+    current_user.update last_felt_on: Time.zone.today
 
     respond_to do |format|
       if @mood.save
