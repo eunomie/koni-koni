@@ -16,14 +16,7 @@
   - unless current_user.last_felt_on.try(:today?)
     .row
       .col-md-12
-        .card
-          .card-block
-            %h4.card-title
-              = succeed '?' do
-                How was your day
-                - if current_user.team
-                  = " in #{current_user.team} team"
-            = render 'moods/form'
+        = render 'moods/form'
 
   .row
     .col-md-12

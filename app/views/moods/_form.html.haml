@@ -1,10 +1,19 @@
 = simple_form_for @mood, remote: true do |f|
-  - if @mood.errors.any?
-    #error_explanation.alert.alert-danger
-      %strong= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
-      %ul
-        - @mood.errors.full_messages.each do |message|
-          %li= message
-  %fieldset.form-group
-    = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }, label: false
-  = f.submit 'Save', class: 'btn btn-primary'
+  .card
+    .card-block
+      %h4.card-title
+        = succeed '?' do
+          How was your day
+          in
+          = select_tag 'team', options_from_collection_for_select(current_user.organization.teams, 'id', 'name', current_user.team.try(:id)), prompt: 'no'
+          = #select :current_user, :team, current_user.organization.teams.collect { |team| [team.name, team.id] }, prompt: '-- select --'
+          team
+      - if @mood.errors.any?
+        #error_explanation.alert.alert-danger
+          %strong= "#{pluralize(mood.errors.count, "error")} prohibited this mood from being saved:"
+          %ul
+            - @mood.errors.full_messages.each do |message|
+              %li= message
+      %fieldset.form-group
+        = f.input :feeling, as: :radio_buttons, collection: Mood.feelings.keys.to_a, item_wrapper_class: 'radio-inline', wrapper_html: { class: 'radio' }, label: false
+      = f.submit 'Save', class: 'btn btn-primary'

@@ -19,7 +19,12 @@ module MoodCreation
       )
     )
 
-    current_user.update last_felt_on: Time.zone.today
+    user_params = { last_felt_on: Time.zone.today }
+    team_id = params[:team]
+    unless team_id.blank?
+      user_params = user_params.merge({ team: Team.find(team_id) })
+    end
+    current_user.update user_params
 
     respond_to do |format|
       if @mood.save

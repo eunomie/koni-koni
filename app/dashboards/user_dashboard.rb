@@ -18,6 +18,7 @@ class UserDashboard < Administrate::BaseDashboard
     name: Field::String,
     organization_id: Field::Number,
     team_id: Field::Number,
+    last_felt_on: Field::DateTime,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -46,6 +47,7 @@ class UserDashboard < Administrate::BaseDashboard
     :name,
     :organization_id,
     :team_id,
+    :last_felt_on,
   ]
 
   # FORM_ATTRIBUTES
@@ -59,6 +61,7 @@ class UserDashboard < Administrate::BaseDashboard
     :name,
     :organization_id,
     :team_id,
+    :last_felt_on,
   ]
 
   # Overwrite this method to customize how users are displayed
