@@ -4,7 +4,7 @@ class Mood < ActiveRecord::Base
   validates :feeling, presence: true
   belongs_to :organization
   validates :organization, presence: true
-  has_one :team
+  belongs_to :team
 
   enum feeling: {
     good: 'good',
