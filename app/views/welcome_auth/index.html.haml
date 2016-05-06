@@ -25,6 +25,11 @@
           %h4.card-title
             History
           = area_chart @moods
+          - if current_user.team
+            %h3
+              For team
+              = current_user.team.name
+            = area_chart @moods_for_team
           %dl
             - @moods.each do |date, moods|
               %dd= date.to_s

@@ -12,7 +12,9 @@ class Mood < ActiveRecord::Base
     bad: 'bad'
   }
 
-  def self.by_date(for_organization:)
-    Mood.where(organization: for_organization).group_by(&:felt_on)
+  def self.by_date(for_organization:, and_team: nil)
+    params = { organization: for_organization }
+    params = params.merge({ team_id: and_team.id }) unless and_team.nil?
+    Mood.where(params).group_by(&:felt_on)
   end
 end
