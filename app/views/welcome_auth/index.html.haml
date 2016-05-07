@@ -24,13 +24,11 @@
         .card-block
           %h4.card-title
             History
-          = area_chart @moods
-          - if current_user.team
-            %h3
-              For team
+            - unless current_user.team.nil?
+              for team
               = current_user.team.name
-            = area_chart @moods_for_team
+          = area_chart @presented_moods
           %dl
-            - @moods.each do |date, moods|
+            - @presented_moods.each do |date, moods|
               %dd= date.to_s
               %dt= moods
