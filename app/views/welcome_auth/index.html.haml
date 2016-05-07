@@ -13,10 +13,13 @@
               - if !current_user.team.nil?
                 = "- #{current_user.team}"
 
-  - unless current_user.last_felt_on.try(:today?)
-    .row
-      .col-md-12
+  .row
+    .col-md-12
+      - unless current_user.last_felt_on.try(:today?)
         = render 'moods/form'
+      - else
+        .alert.alert-info
+          You have already filled your mood for today.
 
   .row
     .col-md-12
