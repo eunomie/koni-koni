@@ -6,6 +6,15 @@ class MoodsPresenter < BasePresenter
   end
 
   def self.average(nums)
-    nums.sum / nums.size
+    if nums.empty?
+      nil
+    else
+      nums.sum / nums.size
+    end
+  end
+
+  def self.from(moods, h)
+    mood_to_presenter = -> (_, mood, _) { MoodsPresenter.new(mood, h).compute }
+    moods.update moods, &mood_to_presenter
   end
 end

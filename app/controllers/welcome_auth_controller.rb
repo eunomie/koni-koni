@@ -6,6 +6,6 @@ class WelcomeAuthController < ApplicationController
     @mood = Mood.new
 
     @moods = Mood.by_date for_organization: current_user.organization, and_team: current_user.team
-    @presented_moods = @moods.update(@moods) { |_, mood| MoodsPresenter.new(mood, view_context).compute }
+    @presented_moods = MoodsPresenter.from @moods, view_context
   end
 end
