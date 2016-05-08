@@ -11,15 +11,19 @@
     .container-fluid.main
       %nav.navbar.navbar-light.bg-faded.navbar-fixed-top
         = link_to 'Koni', root_path, class: 'navbar-brand'
+        - if signed_in?
+          %ul.nav.navbar-nav
+            %li.nav-item
+              = link_to 'History', moods_path, class: ['nav-link', ('active' if current_page?(controller: 'moods', action: 'index'))]
         %ul.nav.navbar-nav.pull-xs-right
           - if signed_in?
             %li.nav-item
-              = link_to current_user.name, profile_index_path
+              = link_to current_user.name, profile_index_path, class: ['nav-link', ('active' if current_page?(controller: 'profile', action: 'index'))]
             %li.nav-item
-              = link_to t('.sign_out'), sign_out_path, method: :delete
+              = link_to t('.sign_out'), sign_out_path, method: :delete, class: 'nav-link'
           - else
             %li.nav-item
-              = link_to t('.sign_in'), sign_in_path
+              = link_to t('.sign_in'), sign_in_path, class: 'nav-link'
       #flash.container
         = render 'layouts/flash'
       = yield
