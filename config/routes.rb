@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'welcome_auth/index'
     post 'welcome_auth/create'
 
-    resources :moods, only: [:create, :new]
+    resources :moods, only: [:create, :new, :index]
   end
 
   constraints Clearance::Constraints::SignedOut.new do

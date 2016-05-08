@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-md-12
+      %h2 History
+  .row
+    .col-md-12
+      .card
+        %h4.card-header
+          For all organization
+        .card-block
+          = area_chart @no_team_moods[:presented]
+  - @team_moods.each do |team, moods|
+    .row
+      .col-md-12
+        .card
+          %h4.card-header
+            For team
+            = team
+          .card-block
+            = area_chart moods[:presented]
