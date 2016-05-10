@@ -5,8 +5,7 @@
         = succeed '?' do
           How was your day
           in
-          = select_tag 'team', options_from_collection_for_select(current_user.organization.teams, 'id', 'name', current_user.team.try(:id)), prompt: 'no'
-          = #select :current_user, :team, current_user.organization.teams.collect { |team| [team.name, team.id] }, prompt: '-- select --'
+          = select_tag 'team', options_from_collection_for_select(current_user.organization.teams, 'id', 'name', current_user.team.try(:id)), include_blank: 'no'
           team
       - if @mood.errors.any?
         #error_explanation.alert.alert-danger
