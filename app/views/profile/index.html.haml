@@ -12,3 +12,10 @@
         .card-block
           = link_to t('.forgot_password'), new_password_path, class: 'card-link'
     .col-md-6
+      .card
+        %h4.card-header
+          Team
+        .card-block
+          = simple_form_for current_user, remote: true do |f|
+            = f.select :team_id, options_from_collection_for_select(current_user.organization.teams, 'id', 'name', current_user.team.try(:id)), include_blank: 'no team'
+            = f.submit 'Save', class: 'card-link'

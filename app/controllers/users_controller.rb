@@ -12,6 +12,15 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  # UPDATE /users/:id
+  def update
+    if current_user.update update_params
+      redirect_to profile_index_path, notice: 'Team set'
+    else
+      redirect_to profile_index_path, alert: 'Team not set'
+    end
+  end
+
   private
 
   def user_from_params
@@ -24,5 +33,9 @@ class UsersController < Clearance::UsersController
       user.password = password
       user.name = name
     end
+  end
+
+  def update_params
+    params.require(:user).permit(:team_id)
   end
 end
