@@ -17,4 +17,9 @@ class Mood < ActiveRecord::Base
     params = params.merge({ team_id: and_team.id }) unless and_team.nil?
     Mood.where(params).group_by(&:felt_on)
   end
+
+  def self.dates_for(organization)
+    [Mood.where({ organization: organization }).minimum(:felt_on),
+     Mood.where({ organization: organization }).maximum(:felt_on)]
+  end
 end
