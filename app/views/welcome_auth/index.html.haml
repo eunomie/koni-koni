@@ -31,7 +31,3 @@
               for team
               = current_user.team.name
           = area_chart @presented_moods
-          %dl
-            - @presented_moods.each do |date, moods|
-              %dd= date.to_s
-              %dt= moods
