@@ -19,4 +19,18 @@ module ApplicationHelper
           end
     "#{css} mood-#{value.to_i}"
   end
+
+  def mood_chart(moods, dates)
+    haml_tag :ul, class: 'mood_graph' do
+      dates.first.upto dates.last do |date|
+        mood_value = moods[date]
+        haml_tag :li,
+          class: ['day', class_for_mood_value(mood_value)],
+          title: date,
+          'data-date' => date,
+          'data-mood-value' => mood_value.to_i,
+          'data-toggle' => 'tooltip'
+      end
+    end
+  end
 end

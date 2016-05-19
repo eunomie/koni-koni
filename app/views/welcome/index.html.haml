@@ -9,11 +9,4 @@
     .col-md-12
       .card
         .card-block
-          %ul.mood_graph
-            - @dates.first.upto @dates.last do |date|
-              - mood_value = @presented_moods[date]
-              %li.day{ class: class_for_mood_value(mood_value),
-                      'data-date' => date,
-                      'data-mood-value' => mood_value.to_i,
-                      'data-toggle' => 'tooltip',
-                      'title' => date }
+          - mood_chart @presented_moods, @dates
