@@ -30,5 +30,4 @@
             - unless current_user.team.nil?
               for team
               = current_user.team.name
-          = area_chart @presented_moods
           = mood_chart @presented_moods, @dates

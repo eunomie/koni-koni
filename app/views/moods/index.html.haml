@@ -8,7 +8,7 @@
         %h4.card-header
           For all organization
         .card-block
-          = area_chart @no_team_moods[:presented]
+          = mood_chart @no_team_moods[:presented], @dates
   - @team_moods.each do |team, moods|
     .row
       .col-md-12
@@ -17,4 +17,4 @@
             For team
             = team
           .card-block
-            = area_chart moods[:presented]
+            = mood_chart moods[:presented], @dates

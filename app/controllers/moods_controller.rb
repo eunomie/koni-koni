@@ -4,6 +4,7 @@ class MoodsController < ApplicationController
 
   # GET /moods
   def index
+    @dates = Mood.dates_for current_user.organization
     all_moods = Mood.by_date for_organization: current_user.organization
     @no_team_moods = {}
     @no_team_moods[:moods] = all_moods
@@ -11,9 +12,9 @@ class MoodsController < ApplicationController
 
     @team_moods = current_user.organization.teams.map do |team|
       moods = ({
-                all_moods.keys.min => [],
-                all_moods.keys.max => []
-              }).merge(Mood.by_date(for_organization: current_user.organization, and_team: team))
+        @dates.first => [],
+        @dates.last => []
+      }).merge(Mood.by_date(for_organization: current_user.organization, and_team: team))
       {
         team.name => {
           moods:     moods,
