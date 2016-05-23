@@ -16,6 +16,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
+    position: relative;
     .day {
 	width: 12px;
 	border: 1px solid $gray-lighter;
@@ -101,5 +102,15 @@
 
 	&.empty {
 	}
+    }
+
+    .day + .day::before {
+	height: 160px;
+	content: '';
+	width: 1px;
+	position: absolute;
+	top: 0px;
+	margin-left: -2px;
+	background: #eeeeec;
     }
 }
